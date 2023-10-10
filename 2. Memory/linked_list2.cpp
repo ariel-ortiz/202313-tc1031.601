@@ -92,6 +92,25 @@ bool remove(Node*& list, int value)
     return false;
 }
 
+void reverse(Node*& list)
+{
+    if (not list) {
+        return;
+    }
+
+    Node* prev = nullptr;
+    Node* next = list->next;
+
+    while (next) {
+        list->next = prev;
+        prev = list;
+        list = next;
+        next = next->next;
+    }
+
+    list->next = prev;
+}
+
 int main()
 {
     Node* list = nullptr;
@@ -111,6 +130,9 @@ int main()
     insert(list, 42);
     display(list);
     std::cout << "length(list) = " << length(list) << "\n";
+
+    reverse(list);
+    display(list);
 
     std::cout << "remove(list, 16) = " << remove(list, 16) << "\n";
     display(list);
