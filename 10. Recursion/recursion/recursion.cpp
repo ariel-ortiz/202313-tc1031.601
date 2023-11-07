@@ -1,6 +1,7 @@
 #include "intlist.h"
 #include "recursion.h"
 
+// Complexity: O(N)
 int size(const IntList& a)
 {
     if (is_empty(a)) {
@@ -10,39 +11,87 @@ int size(const IntList& a)
     }
 }
 
+// Complexity: O(N)
 IntList cons_end(int value, const IntList& a)
 {
-    return IntList {};
+    if (is_empty(a)) {
+        return IntList { value };
+    } else {
+        return cons(first(a), cons_end(value, rest(a)));
+    }
 }
 
+// Complexity: O(N)
 int sum(const IntList& a)
 {
-    return 0;
+    if (is_empty(a)) {
+        return 0;
+    } else {
+        return first(a) + sum(rest(a));
+    }
 }
 
+// Complexity: O(N)
 IntList duplicate(const IntList& a)
 {
-    return IntList {};
+    if (is_empty(a)) {
+        return IntList {};
+    } else {
+        return cons(first(a),
+                    cons(first(a),
+                         duplicate(rest(a))));
+    }
 }
 
+// Complexity: O(N)
 int last(const IntList& a)
 {
-    return 0;
+    if (size(a) == 1) {
+        return first(a);
+    } else {
+        return last(rest(a));
+    }
 }
 
+// Complexity: O(N)
 IntList but_last(const IntList& a)
 {
-    return IntList {};
+    if (size(a) == 1) {
+        return IntList {};
+    } else {
+        return cons(first(a), but_last(rest(a)));
+    }
 }
 
+// Complexity: O(1)
+int max(int a, int b)
+{
+    if (a > b) {
+        return a;
+    } else {
+        return b;
+    }
+}
+
+// Complexity: O(N)
 int maximum(const IntList& a)
 {
-    return 0;
+    if (size(a) == 1) {
+        return first(a);
+    } else {
+        return max(first(a), maximum(rest(a)));
+    }
 }
 
+// Complexity: O(N), N = size(a)
 IntList append(const IntList& a, const IntList& b)
 {
-    return IntList {};
+    if (is_empty(a)) {
+        return b;
+    } else {
+        return cons(first(a),
+                    append(rest(a), b));
+    }
 }
 
 IntList repeat(int n, int value)
