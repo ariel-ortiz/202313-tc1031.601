@@ -106,7 +106,15 @@ IntList reverse(const IntList& a)
 
 IntList merge(const IntList& a, const IntList& b)
 {
-    return IntList {};
+    if (is_empty(a)) {
+        return b;
+    } else if (is_empty(b)) {
+        return a;
+    } else if (first(a) < first(b)) {
+        return cons(first(a), merge(rest(a), b));
+    } else {
+        return cons(first(b), merge(a, rest(b)));
+    }
 }
 
 bool is_prefix(const IntList& a, const IntList& b)
@@ -126,5 +134,9 @@ IntList insertion_sort(const IntList& a)
 
 IntList binary(int n)
 {
-    return IntList {};
+    if (n == 0) {
+        return IntList {};
+    } else {
+        return cons_end(n % 2, binary(n / 2));
+    }
 }

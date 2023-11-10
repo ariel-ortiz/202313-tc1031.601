@@ -24,5 +24,8 @@ int main()
     std::cout << "but_last(a) = " << but_last(a) << "\n";
     std::cout << "maximum(a) = " << maximum(a) << "\n";
     std::cout << "append(a, a) = " << append(a, a) << "\n";
+    std::cout << merge(IntList {2, 3, 5, 7, 10}, IntList {1, 2, 4, 6, 8, 9}) << "\n";
+    std::cout << binary(0) << "\n";
+
     return 0;
 }
